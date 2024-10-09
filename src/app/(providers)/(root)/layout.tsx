@@ -1,4 +1,6 @@
 'use client';
+import CustomLink from '@/components/CustomLink';
+import { HABIT_NEW, HOME, MYPAGE } from '@/constant/pathname';
 import { usePathname } from 'next/navigation';
 import { PropsWithChildren } from 'react';
 
@@ -10,13 +12,11 @@ const RootLayout = ({ children }: PropsWithChildren) => {
             <div className='p-6 grow'>{children}</div>
 
             {!isLoginOrOnboarding && (
-                <>
-                    <div className='w-full bg-slate-500 flex justify-around'>
-                        <button>🏠</button>
-                        <button>✏️</button>
-                        <button>📊</button>
-                    </div>
-                </>
+                <div className='h-16 w-full flex justify-around'>
+                    <CustomLink href={HOME}>🏠</CustomLink>
+                    <CustomLink href={HABIT_NEW}>✏️</CustomLink>
+                    <CustomLink href={MYPAGE}>📊</CustomLink>
+                </div>
             )}
         </div>
     );

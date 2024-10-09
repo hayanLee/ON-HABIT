@@ -7,7 +7,7 @@ interface CustomLinkProps extends PropsWithChildren {
 
 const CustomLink = ({ children, href }: CustomLinkProps) => {
     return (
-        <Link href={href} className='bg-orange-200 w-full inline-block text-center'>
+        <Link href={href} className='bg-orange-200 w-full inline-block text-center flex-center'>
             {children}
         </Link>
     );

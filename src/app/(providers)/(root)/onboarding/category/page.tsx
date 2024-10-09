@@ -6,7 +6,7 @@ const CategoryPage = () => {
     return (
         <div>
             <div>
-                <h2 className='text-xl font-bold'>what habits do you want to work on?</h2>
+                <h2 className='title'>what habits do you want to work on?</h2>
                 <p className='text-base'>Choose one or more habits.</p>
             </div>
 

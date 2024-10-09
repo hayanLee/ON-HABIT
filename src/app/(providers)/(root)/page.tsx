@@ -10,7 +10,7 @@ const HomePage = () => {
 
             <div className='my-6 w-full h-10 bg-blue-200'></div>
 
-            <h3>My Habits</h3>
+            <h3 className='title'>My Habits</h3>
 
             <div className='w-full'>
                 <Habit />

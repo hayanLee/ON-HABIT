@@ -6,7 +6,7 @@ const ReminderPage = () => {
     return (
         <div>
             <div>
-                <h2 className='text-xl font-bold'>When do you want us to remind you?</h2>
+                <h2 className='title'>When do you want us to remind you?</h2>
             </div>
 
             <div className='grid grid-cols-2 mt-6 gap-6'>

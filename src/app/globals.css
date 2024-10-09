@@ -6,4 +6,8 @@
     .flex-center {
         @apply flex justify-center items-center;
     }
+
+    .title {
+        @apply text-lg font-bold;
+    }
 }

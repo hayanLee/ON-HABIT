@@ -1,5 +1,5 @@
+import Header from '@/components/Header';
 import { PropsWithChildren } from 'react';
-import Header from './_components/Header';
 
 const OnBoardingLayout = ({ children }: PropsWithChildren) => {
     return (

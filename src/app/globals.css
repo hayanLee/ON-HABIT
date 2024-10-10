@@ -10,4 +10,8 @@
     .title {
         @apply text-lg font-bold;
     }
+
+    .subtitle {
+        @apply text-base font-semibold;
+    }
 }

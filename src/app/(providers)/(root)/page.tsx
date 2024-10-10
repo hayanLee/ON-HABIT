@@ -1,6 +1,8 @@
+import Day from '@/components/Day';
 import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
+    const days = Array(7).fill(null);
     return (
         <div>
             <header className='flex relative'>
@@ -8,7 +10,11 @@ const HomePage = () => {
                 <div className='w-8 h-8 bg-red-200 absolute right-0'>😛</div>
             </header>
 
-            <div className='my-6 w-full h-10 bg-blue-200'></div>
+            <div className='my-6 w-full flex justify-between'>
+                {days.map((_, idx) => (
+                    <Day key={idx} />
+                ))}
+            </div>
 
             <h3 className='title'>My Habits</h3>
 

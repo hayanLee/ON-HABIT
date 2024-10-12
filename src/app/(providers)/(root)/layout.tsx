@@ -2,15 +2,19 @@
 import CustomLink from '@/components/CustomLink';
 import { HABIT_NEW, HOME, MYPAGE } from '@/constant/pathname';
 import { usePathname } from 'next/navigation';
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, ReactNode } from 'react';
 
-const RootLayout = ({ children }: PropsWithChildren) => {
+interface RootLayoutProps extends PropsWithChildren {
+    modal: ReactNode;
+}
+
+const RootLayout = ({ children, modal }: RootLayoutProps) => {
     const pathname = usePathname();
     const isLoginOrOnboarding = pathname.startsWith('/login') || pathname.startsWith('/onboarding');
     return (
         <div className='flex flex-col mx-auto w-[375px] h-dvh bg-yellow-100  md:w-[450px]'>
             <div className='p-6 grow'>{children}</div>
-
+            {modal}
             {!isLoginOrOnboarding && (
                 <div className='h-16 w-full flex justify-around'>
                     <CustomLink href={HOME}>🏠</CustomLink>

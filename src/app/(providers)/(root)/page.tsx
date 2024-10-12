@@ -3,6 +3,8 @@ import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
     const days = Array(7).fill(null);
+    const habits = Array(10).fill(null);
+
     return (
         <div>
             <header className='flex relative'>
@@ -18,19 +20,10 @@ const HomePage = () => {
 
             <h3 className='title'>My Habits</h3>
 
-            <div className='w-full'>
-                <Habit />
-                <Habit />
-                <Habit />
-                <div className='py-4 border-b-2'>
-                    <div className='flex'>
-                        <h4 className='grow'>Read 10 pages of a book</h4>
-                        <input type='checkbox' checked />
-                    </div>
-                    <button disabled className='bg-slate-500 text-white rounded'>
-                        unusally completed at 10:15 pm
-                    </button>
-                </div>
+            <div className='w-full h-auto '>
+                {habits.map((_, idx) => (
+                    <Habit key={idx} id={idx} />
+                ))}
             </div>
         </div>
     );

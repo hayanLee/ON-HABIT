@@ -1,5 +1,8 @@
-const HabitPage = () => {
-    return <div>HabitPage</div>;
+import { HOME } from '@/constant/pathname';
+import { redirect } from 'next/navigation';
+
+const HabitDetailPage = () => {
+    return redirect(HOME);
 };
 
-export default HabitPage;
+export default HabitDetailPage;

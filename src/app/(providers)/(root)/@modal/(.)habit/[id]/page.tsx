@@ -3,10 +3,11 @@ import Button from '@/components/Button';
 import Day from '@/components/Day';
 import { useRouter } from 'next/navigation';
 
-const Modal = ({ params: { id } }: { params: { id: number } }) => {
+const Modal = ({ params: { id } }: { params: { id: string } }) => {
     const router = useRouter();
     const handleClick = () => router.back();
     const days = Array(7).fill(null);
+
     return (
         <div className='bg-red-200 h-1/2 z-10 fixed w-inherit bottom-16'>
             <div className='flex '>

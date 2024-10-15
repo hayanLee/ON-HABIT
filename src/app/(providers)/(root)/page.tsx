@@ -1,16 +1,14 @@
 import Day from '@/components/Day';
+import MainHeader from '@/components/Header/MainHeader';
 import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
     const days = Array(7).fill(null);
-    const habits = Array(10).fill(null);
+    const habits = Array(5).fill(null);
 
     return (
         <div>
-            <header className='flex relative'>
-                <span className='grow text-center'>Oct 10</span>
-                <div className='w-8 h-8 bg-red-200 absolute right-0'>😛</div>
-            </header>
+            <MainHeader />
 
             <div className='my-6 w-full flex justify-between'>
                 {days.map((_, idx) => (

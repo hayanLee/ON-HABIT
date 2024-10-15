@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Day from '@/components/Day';
-import Header from '@/components/Header';
+import Header from '@/components/Header/OnBoardingHeader';
 import Input from '@/components/Input';
 
 const NewHabitPage = () => {

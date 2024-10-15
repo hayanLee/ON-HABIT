@@ -1,23 +1,40 @@
-import CustomLink from '@/components/CustomLink';
+'use client';
+import Button from '@/components/Button';
 import GridButton from '@/components/GridButton';
-import { ONBOARDING_COMPLETE } from '@/constant/pathname';
+
+const reminders = [
+    { title: 'Morning', time: '6:00AM' },
+    { title: 'Noon', time: '12:00PM' },
+    { title: 'Evening', time: '6:00AM' },
+];
 
 const ReminderPage = () => {
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        const btn = e.target as HTMLElement;
+        const target = btn.closest('button');
+
+        if (target) {
+            console.log(target.id);
+        }
+    };
     return (
         <div>
             <div>
                 <h2 className='title'>When do you want us to remind you?</h2>
             </div>
 
-            <div className='grid grid-cols-2 mt-6 gap-6'>
-                <GridButton>6:00 AM</GridButton>
-                <GridButton>12:00 PM</GridButton>
-                <GridButton>6:00 PM</GridButton>
+            <div className='grid grid-cols-2 mt-6 gap-6' onClick={handleClick}>
+                {reminders.map((reminder) => (
+                    <GridButton id={reminder.title} key={reminder.title}>
+                        <div>
+                            <p className='text-4xl'>{reminder.time}</p>
+                            <h4 className='subtitle'>{reminder.title}</h4>
+                        </div>
+                    </GridButton>
+                ))}
             </div>
 
-            <div className='flex justify-between'>
-                <CustomLink href={ONBOARDING_COMPLETE}>next</CustomLink>
-            </div>
+            <Button>next</Button>
         </div>
     );
 };

@@ -38,8 +38,10 @@ const categories = [
 ];
 
 const CategoryPage = () => {
-    const handleClick = (e) => {
-        const target = e.target.closest('button');
+    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        const btn = e.target as HTMLElement;
+        const target = btn.closest('button');
+
         if (target) {
             console.log(target.id);
         }

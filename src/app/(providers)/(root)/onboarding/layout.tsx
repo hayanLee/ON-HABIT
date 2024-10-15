@@ -3,12 +3,12 @@ import { PropsWithChildren } from 'react';
 
 const OnBoardingLayout = ({ children }: PropsWithChildren) => {
     return (
-        <div>
+        <div className='flex flex-col h-full'>
             <div className='mb-6'>
                 <Header />
                 <h3>progress bar</h3>
             </div>
-            {children}
+            <div className='grow overflow-y-auto scrollbar-hide'>{children}</div>
         </div>
     );
 };

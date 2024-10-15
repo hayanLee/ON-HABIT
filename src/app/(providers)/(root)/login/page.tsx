@@ -6,10 +6,10 @@ import { ONBOARDING_INFO } from '@/constant/pathname';
 
 const LoginPage = () => {
     return (
-        <main className='flex flex-col h-full justify-center'>
-            <div className='mb-20'>
+        <main className='flex flex-col justify-center h-full'>
+            <div className='mb-10'>
                 <div className='aspect-square bg-pink-50'>이미지</div>
-                <div className='flex-center flex-col my-2'>
+                <div className='flex-center flex-col my-4'>
                     <h1 className='text-2xl font-bold'>ON HABIT</h1>
                     <h3>Build habits and routines easily</h3>
                 </div>

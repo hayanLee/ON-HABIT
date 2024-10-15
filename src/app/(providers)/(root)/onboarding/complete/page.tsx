@@ -3,10 +3,11 @@ import { HOME } from '@/constant/pathname';
 
 const CompletePage = () => {
     return (
-        <div className='flex-center flex-col'>
-            <div className='aspect-square bg-blue-200'>Image</div>
-            <h3 className='title'>You are all set!</h3>
-
+        <div>
+            <div className='flex-col-center gap-y-4 my-10'>
+                <p className='text-4xl'>✅</p>
+                <h3 className='title'>You are all set!</h3>
+            </div>
             <CustomLink href={HOME}>Start Tracking</CustomLink>
         </div>
     );

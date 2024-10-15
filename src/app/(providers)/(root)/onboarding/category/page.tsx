@@ -1,8 +1,49 @@
-import CustomLink from '@/components/CustomLink';
+'use client';
+import Button from '@/components/Button';
 import GridButton from '@/components/GridButton';
-import { ONBOARDING_REMINDER } from '@/constant/pathname';
+
+const categories = [
+    {
+        title: 'Workout',
+        icon: '💪',
+    },
+    {
+        title: 'Read more',
+        icon: '📚',
+    },
+    {
+        title: 'Take Picture',
+        icon: '📸',
+    },
+    {
+        title: 'Planning',
+        icon: '🗓️',
+    },
+    {
+        title: 'Sleep early',
+        icon: '🛌',
+    },
+    {
+        title: 'Music lesson',
+        icon: '🎶',
+    },
+    {
+        title: 'Journalling',
+        icon: '📝',
+    },
+    {
+        title: 'Less social media',
+        icon: '💻',
+    },
+];
 
 const CategoryPage = () => {
+    const handleClick = (e) => {
+        const target = e.target.closest('button');
+        if (target) {
+            console.log(target.id);
+        }
+    };
     return (
         <div>
             <div>
@@ -10,16 +51,18 @@ const CategoryPage = () => {
                 <p className='text-base'>Choose one or more habits.</p>
             </div>
 
-            <div className='grid grid-cols-2 mt-6 gap-6'>
-                <GridButton>workout</GridButton>
-                <GridButton>Read more</GridButton>
-                <GridButton>Take Picture</GridButton>
-                <GridButton>Planning</GridButton>
+            <div className='grid grid-cols-2 mt-6 gap-6' onClick={handleClick}>
+                {categories.map((category) => (
+                    <GridButton id={category.title} key={category.title}>
+                        <div>
+                            <p className='text-4xl'>{category.icon}</p>
+                            <h4 className='subtitle'>{category.title}</h4>
+                        </div>
+                    </GridButton>
+                ))}
             </div>
 
-            <div className='flex justify-between'>
-                <CustomLink href={ONBOARDING_REMINDER}>next</CustomLink>
-            </div>
+            <Button>next</Button>
         </div>
     );
 };

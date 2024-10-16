@@ -9,11 +9,9 @@
     .flex-col-center {
         @apply flex flex-col justify-center items-center;
     }
-
     .title {
         @apply text-lg font-bold;
     }
-
     .subtitle {
         @apply text-base font-semibold;
     }

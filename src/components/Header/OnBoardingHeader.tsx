@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-const Header = () => {
+const OnBoardingHeader = () => {
     const router = useRouter();
     const pathname = usePathname();
     const isOnboarding = pathname.startsWith('/onboarding');
@@ -19,4 +19,4 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default OnBoardingHeader;

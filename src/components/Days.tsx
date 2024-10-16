@@ -1,9 +1,9 @@
 interface DaysProps {
     id: string;
     day: string;
-    inside?: boolean;
+    inside: boolean;
 }
-const Days = ({ id, day, inside = true }: DaysProps) => {
+const Days = ({ id, day, inside }: DaysProps) => {
     return (
         <button className='flex-center flex-col' id={id}>
             {!inside && <span className='subtitle'>{day}</span>}

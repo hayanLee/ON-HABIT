@@ -1,11 +1,11 @@
 'use client';
 import Button from '@/components/Button';
-import OnBoardingHeader from '@/components/Header/OnBoardingHeader';
 import Week from '@/components/Week';
 import { FieldValues, useForm } from 'react-hook-form';
 
 const NewHabitPage = () => {
     const { register, handleSubmit, formState, setValue } = useForm({ mode: 'onChange' });
+
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const btn = e.target as HTMLButtonElement;
         const target = btn.closest('button');
@@ -18,8 +18,6 @@ const NewHabitPage = () => {
     };
     return (
         <div className='h-full'>
-            <OnBoardingHeader />
-
             <form className='flex flex-col gap-y-6' onSubmit={handleSubmit(onSubmit)}>
                 <input
                     type='text'

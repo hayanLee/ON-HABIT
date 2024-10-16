@@ -1,20 +1,15 @@
-import Day from '@/components/Day';
 import MainHeader from '@/components/Header/MainHeader';
+import Week from '@/components/Week';
 import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
-    const days = Array(7).fill(null);
     const habits = Array(5).fill(null);
 
     return (
-        <div>
+        <div className='flex flex-col gap-y-4'>
             <MainHeader />
 
-            <div className='my-6 w-full flex justify-between'>
-                {days.map((_, idx) => (
-                    <Day key={idx} />
-                ))}
-            </div>
+            <Week />
 
             <h3 className='title'>My Habits</h3>
 

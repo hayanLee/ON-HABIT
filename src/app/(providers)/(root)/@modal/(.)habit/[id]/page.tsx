@@ -1,12 +1,11 @@
 'use client';
 import Button from '@/components/Button';
-import Day from '@/components/Day';
+import Week from '@/components/Week';
 import { useRouter } from 'next/navigation';
 
 const Modal = ({ params: { id } }: { params: { id: string } }) => {
     const router = useRouter();
     const handleClick = () => router.back();
-    const days = Array(7).fill(null);
 
     return (
         <div className='bg-red-200 h-1/2 z-10 fixed w-inherit bottom-16 p-6'>
@@ -17,11 +16,7 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
                 </span>
             </div>
 
-            <div className='my-6 w-full flex justify-between'>
-                {days.map((_, idx) => (
-                    <Day key={idx} />
-                ))}
-            </div>
+            <Week />
 
             <div>
                 <p>This week you have {id} habit, 4 out of 7 days !</p>

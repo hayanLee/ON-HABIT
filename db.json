@@ -1,0 +1,32 @@
+[
+    {
+        "id": "1",
+        "name": "운동하기",
+        "period": ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        "remind": "morning"
+    },
+    {
+        "id": "2",
+        "name": "독서",
+        "period": ["Mon", "Wed", "Fri"],
+        "remind": "evening"
+    },
+    {
+        "id": "3",
+        "name": "물 많이 마시기",
+        "period": ["Tue", "Thu", "Sat"],
+        "remind": "noon"
+    },
+    {
+        "id": "4",
+        "name": "명상하기",
+        "period": ["Mon", "Tue", "Wed", "Thu", "Sun"],
+        "remind": "morning"
+    },
+    {
+        "id": "5",
+        "name": "코딩 연습하기",
+        "period": ["Fri", "Sat"],
+        "remind": "evening"
+    }
+]

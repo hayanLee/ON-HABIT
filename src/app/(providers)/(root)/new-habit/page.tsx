@@ -1,49 +1,72 @@
 'use client';
 import Button from '@/components/Button';
 import Week from '@/components/Week';
+import { API_URLS } from '@/constant/apiEndpoint';
 import { FieldValues, useForm } from 'react-hook-form';
 
 const NewHabitPage = () => {
-    const { register, handleSubmit, formState, setValue } = useForm({ mode: 'onChange' });
+    const {
+        register,
+        handleSubmit,
+        formState: { isValid },
+        setValue,
+    } = useForm({ mode: 'onChange' });
 
-    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const btn = e.target as HTMLButtonElement;
-        const target = btn.closest('button');
-
-        if (target) setValue('days', target.id);
+    const handleClick = (days: string[]) => {
+        setValue('period', days);
     };
 
     const onSubmit = (data: FieldValues) => {
         console.log(data);
+        const newHabit = {
+            id: crypto.randomUUID(),
+            ...data,
+        };
+
+        fetch(API_URLS.HABITS, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newHabit),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('성공:', data);
+            })
+            .catch((error) => {
+                console.error('실패:', error);
+            });
     };
+
     return (
         <div className='h-full'>
             <form className='flex flex-col gap-y-6' onSubmit={handleSubmit(onSubmit)}>
                 <input
                     type='text'
                     placeholder='Habit name'
-                    {...register('HabitName', { required: 'Habit Name is required' })}
+                    {...register('name', { required: 'Habit Name is required' })}
                 />
 
                 <div>
                     <h3 className='title'>Set periodicity</h3>
-                    <Week onClick={handleClick} />
-                    <input type='hidden' {...register('days', { required: 'Selected Day is required' })} />
+                    <Week onChange={handleClick} />
+                    <input type='hidden' {...register('period', { required: 'Period is required' })} />
                 </div>
 
                 <div>
                     <h3 className='title'>When should we remind you?</h3>
                     <div className='flex'>
-                        <input {...register('time', { required: true })} id='morning' type='radio' value='Morning' />
+                        <input {...register('remind', { required: true })} id='morning' type='radio' value='Morning' />
                         <label htmlFor='morning'>Morning</label>
-                        <input {...register('time', { required: true })} id='noon' type='radio' value='Noon' />
+                        <input {...register('remind', { required: true })} id='noon' type='radio' value='Noon' />
                         <label htmlFor='noon'>Noon</label>
-                        <input {...register('time', { required: true })} id='evening' type='radio' value='Evening' />
+                        <input {...register('remind', { required: true })} id='evening' type='radio' value='Evening' />
                         <label htmlFor='evening'>Evening</label>
                     </div>
                 </div>
 
-                <Button disabled={!formState.isValid}>Add New Habit</Button>
+                <Button disabled={!isValid}>Add New Habit</Button>
             </form>
         </div>
     );

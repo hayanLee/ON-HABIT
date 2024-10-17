@@ -1,32 +1,22 @@
-[
-    {
-        "id": "1",
-        "name": "운동하기",
-        "period": ["Mon", "Tue", "Wed", "Thu", "Fri"],
-        "remind": "morning"
-    },
-    {
-        "id": "2",
-        "name": "독서",
-        "period": ["Mon", "Wed", "Fri"],
-        "remind": "evening"
-    },
-    {
-        "id": "3",
-        "name": "물 많이 마시기",
-        "period": ["Tue", "Thu", "Sat"],
-        "remind": "noon"
-    },
-    {
-        "id": "4",
-        "name": "명상하기",
-        "period": ["Mon", "Tue", "Wed", "Thu", "Sun"],
-        "remind": "morning"
-    },
-    {
-        "id": "5",
-        "name": "코딩 연습하기",
-        "period": ["Fri", "Sat"],
-        "remind": "evening"
-    }
-]
+{
+    "habits": [
+        {
+            "id": "1aa4edb9-9ce0-41ad-81ff-6a35fafabab3",
+            "name": "헬스장 가기",
+            "period": ["Mon", "Wed", "Fri"],
+            "remind": "Noon"
+        },
+        {
+            "id": "de5caf8c-9486-490d-974b-5cc60b63aab9",
+            "name": "하루 독서 5p 읽기",
+            "period": ["Mon", "Wed", "Fri", "Sun", "Tue", "Thu", "Sat"],
+            "remind": "Evening"
+        },
+        {
+            "id": "826cd3b0-7e06-4bbf-b251-d28887484da1",
+            "name": "화분 물주기",
+            "period": ["Sat", "Sun"],
+            "remind": "Morning"
+        }
+    ]
+}

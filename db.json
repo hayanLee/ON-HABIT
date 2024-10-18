@@ -4,19 +4,36 @@
             "id": "1aa4edb9-9ce0-41ad-81ff-6a35fafabab3",
             "name": "헬스장 가기",
             "period": ["Mon", "Wed", "Fri"],
-            "remind": "Noon"
+            "remind": "Noon",
+            "completed": true
         },
         {
             "id": "de5caf8c-9486-490d-974b-5cc60b63aab9",
             "name": "하루 독서 5p 읽기",
             "period": ["Mon", "Wed", "Fri", "Sun", "Tue", "Thu", "Sat"],
-            "remind": "Evening"
+            "remind": "Evening",
+            "completed": false
         },
         {
             "id": "826cd3b0-7e06-4bbf-b251-d28887484da1",
             "name": "화분 물주기",
             "period": ["Sat", "Sun"],
-            "remind": "Morning"
+            "remind": "Morning",
+            "completed": true
+        },
+        {
+            "id": "1b4b4f7b-305f-424d-bfd8-8ae3e2adab24",
+            "name": "청소하기",
+            "period": ["Mon", "Tue", "Wed"],
+            "remind": "Noon",
+            "completed": false
+        },
+        {
+            "id": "6c656129-7bcb-4ee5-8b7b-1d3eba25dcd5",
+            "name": "영화보기",
+            "period": ["Sat"],
+            "remind": "Evening",
+            "completed": false
         }
     ]
 }

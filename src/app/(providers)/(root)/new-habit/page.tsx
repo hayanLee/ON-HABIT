@@ -1,7 +1,6 @@
 'use client';
 import Button from '@/components/Button';
 import Week from '@/components/Week';
-import { API_URLS } from '@/constant/apiEndpoint';
 import { FieldValues, useForm } from 'react-hook-form';
 
 const NewHabitPage = () => {
@@ -16,27 +15,12 @@ const NewHabitPage = () => {
         setValue('period', days);
     };
 
-    const onSubmit = (data: FieldValues) => {
-        console.log(data);
-        const newHabit = {
-            id: crypto.randomUUID(),
-            ...data,
-        };
-
-        fetch(API_URLS.HABITS, {
+    const onSubmit = async (data: FieldValues) => {
+        const result = await fetch('/api/habits', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(newHabit),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log('성공:', data);
-            })
-            .catch((error) => {
-                console.error('실패:', error);
-            });
+            body: JSON.stringify(data),
+        });
+        console.log(result);
     };
 
     return (

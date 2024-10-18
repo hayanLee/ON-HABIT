@@ -5,7 +5,7 @@ import Day from './Day';
 
 interface WeekProps {
     inside?: boolean;
-    onChange: (days: string[]) => void;
+    onChange?: (days: string[]) => void;
 }
 
 const daysOfWeek = Array.from({ length: 7 }, (_, idx) => dayjs().day(idx).format('ddd'));
@@ -19,8 +19,7 @@ const Week = ({ inside = true, onChange }: WeekProps) => {
             : [...selectedDays, day];
 
         setSelectedDays(updatedSelected);
-        onChange(updatedSelected);
-        // console.log(updatedSelected);
+        if (onChange) onChange(updatedSelected);
     };
 
     return (

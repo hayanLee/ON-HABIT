@@ -1,19 +1,28 @@
 'use client';
-
 import { HABIT } from '@/constant/pathname';
+import { HabitInfo } from '@/types/Habit';
 import { useRouter } from 'next/navigation';
 
-const Habit = ({ id }: { id: number }) => {
+interface HabitProps {
+    habit: HabitInfo;
+}
+
+const Habit = ({ habit: { id, name, completed } }: HabitProps) => {
     const router = useRouter();
     return (
-        <div className='py-4 border-b-2' onClick={() => router.push(`${HABIT}/${id}`)}>
-            <div className='flex'>
-                <h4 className='grow'>Read 10 pages of a book</h4>
-                <input type='checkbox' />
+        <div className='flex-center py-4 border-b-2'>
+            <div className='flex flex-col grow gap-y-2' onClick={() => router.push(`${HABIT}/${id}`)}>
+                <h4 className='subtitle'>{name}</h4>
+                {completed ? (
+                    <span className='bg-slate-500 text-white rounded w-fit'>Completed at 7:20AM</span>
+                ) : (
+                    <span>unusally completed at 10:15 pm</span>
+                )}
             </div>
-            <button disabled className='bg-slate-500 text-white rounded'>
-                unusally completed at 10:15 pm
-            </button>
+            <input
+                type='checkbox'
+                className='w-6 h-6 ml-4 rounded-full bg-gray-400 checked:bg-blue-500 appearance-none'
+            />
         </div>
     );
 };

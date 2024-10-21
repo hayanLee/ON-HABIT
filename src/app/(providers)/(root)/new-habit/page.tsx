@@ -1,6 +1,8 @@
 'use client';
 import Button from '@/components/Button';
 import Week from '@/components/Week';
+import { useCreateHabit } from '@/hooks/mutations';
+
 import { FieldValues, useForm } from 'react-hook-form';
 
 const NewHabitPage = () => {
@@ -15,13 +17,8 @@ const NewHabitPage = () => {
         setValue('period', days);
     };
 
-    const onSubmit = async (data: FieldValues) => {
-        const result = await fetch('/api/habits', {
-            method: 'POST',
-            body: JSON.stringify(data),
-        });
-        console.log(result);
-    };
+    const { mutateAsync } = useCreateHabit();
+    const onSubmit = async (formData: FieldValues) => await mutateAsync(formData);
 
     return (
         <div className='h-full'>

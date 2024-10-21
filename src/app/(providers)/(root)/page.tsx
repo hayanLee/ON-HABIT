@@ -1,11 +1,11 @@
+'use client';
 import Week from '@/components/Week';
-import { LOCAL } from '@/constant/apiEndpoint';
-import { HabitInfo } from '@/types/Habit';
+import { useHabitsQuery } from '@/hooks/queries';
 import Habit from './habit/_components/Habit';
 
-const HomePage = async () => {
-    const response = await fetch(`${LOCAL}/api/habits`);
-    const habits: HabitInfo[] = (await response.json()) || [];
+const HomePage = () => {
+    const { data: habits, isPending } = useHabitsQuery();
+    if (isPending) return <div>loading..</div>;
     return (
         <div className='flex flex-col'>
             <Week inside={false} />
@@ -13,7 +13,7 @@ const HomePage = async () => {
             <h3 className='title mt-4'>My Habits</h3>
 
             <div className='flex flex-col w-full'>
-                {habits.map((habit, idx) => (
+                {habits?.map((habit, idx) => (
                     <Habit key={idx} habit={habit} />
                 ))}
             </div>

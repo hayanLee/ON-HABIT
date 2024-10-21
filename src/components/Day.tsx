@@ -1,8 +1,7 @@
 'use client';
 
-import { HOME } from '@/constant/pathname';
+import { useDate } from '@/contexts/date.context';
 import clsx from 'clsx';
-import Link from 'next/link';
 import React, { useState } from 'react';
 
 interface DayProps {
@@ -12,6 +11,7 @@ interface DayProps {
 }
 const Day = ({ day, inside, onClick }: DayProps) => {
     const [isChecked, setIsChecked] = useState<boolean>(false);
+    const { handleChangeDay } = useDate();
 
     const handleClick = () => {
         setIsChecked((prev) => !prev);
@@ -35,13 +35,13 @@ const Day = ({ day, inside, onClick }: DayProps) => {
             ) : (
                 <>
                     <span className='subtitle'>{day}</span>
-                    <Link
-                        href={HOME} // 해당 날짜 페이지로 이동
+                    <div
+                        onClick={() => handleChangeDay(day)}
                         className={clsx(
                             'flex-center w-11 h-11 rounded-full cursor-pointer',
                             isChecked ? 'bg-red-200' : 'bg-violet-300'
                         )}
-                    />
+                    ></div>
                 </>
             )}
         </div>

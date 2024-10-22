@@ -9,6 +9,14 @@ interface HabitProps {
 
 const Habit = ({ habit: { id, name, completed } }: HabitProps) => {
     const router = useRouter();
+    // const test = async (data) => {
+    //     const res = await fetch(`${HABITS}`, {
+    //         method: 'PATCH',
+    //         body: JSON.stringify(data),
+    //     });
+    //     return await res.json();
+    // };
+
     return (
         <div className='flex-center py-4 border-b-2'>
             <div className='flex flex-col grow gap-y-2' onClick={() => router.push(`${HABIT}/${id}`)}>
@@ -22,6 +30,7 @@ const Habit = ({ habit: { id, name, completed } }: HabitProps) => {
             <input
                 type='checkbox'
                 className='w-6 h-6 ml-4 rounded-full bg-gray-400 checked:bg-blue-500 appearance-none'
+                // checked={completed}
             />
         </div>
     );

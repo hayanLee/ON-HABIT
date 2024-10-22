@@ -14,7 +14,7 @@ const initialValue: DateContextType = {
 
 const DateContext = createContext(initialValue);
 
-export const useDate = () => useContext(DateContext);
+export const useDay = () => useContext(DateContext);
 
 function DateProvider({ children }: PropsWithChildren) {
     const [selectedDay, setSelectedDay] = useState<string>(initialValue.selectedDay);

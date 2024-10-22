@@ -31,7 +31,7 @@ const NewHabitPage = () => {
 
                 <div>
                     <h3 className='title'>Set periodicity</h3>
-                    <Week onChange={handleClick} />
+                    <Week onChangeDays={handleClick} inside />
                     <input type='hidden' {...register('period', { required: 'Period is required' })} />
                 </div>
 

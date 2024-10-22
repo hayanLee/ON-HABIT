@@ -1,4 +1,4 @@
-import DateProvider from '@/contexts/date.context';
+import DateProvider from '@/contexts/day.context';
 import QueryProvider from '@/provider/QueryProvider';
 import { PropsWithChildren } from 'react';
 

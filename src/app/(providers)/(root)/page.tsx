@@ -1,17 +1,17 @@
 'use client';
 import Week from '@/components/Week';
-import { useDate } from '@/contexts/date.context';
+import { useDay } from '@/contexts/day.context';
 import { useHabitsQuery } from '@/hooks/queries';
 import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
-    const { selectedDay } = useDate();
+    const { selectedDay } = useDay();
     const { data: habits, isPending } = useHabitsQuery(selectedDay);
 
     if (isPending) return <div>loading..</div>;
     return (
         <div className='flex flex-col'>
-            <Week inside={false} />
+            <Week />
 
             <h3 className='title mt-4'>My Habits</h3>
 

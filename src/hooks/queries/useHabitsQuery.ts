@@ -11,7 +11,7 @@ const useHabitsQuery = (day: string) =>
             const data = await res.json();
             return data;
         },
-        select: (habits) => habits.filter((habit) => habit.period.includes(day)),
+        select: (habits) => habits.filter((habit) => habit.periods.some((h) => h.day === day)),
     });
 
 export default useHabitsQuery;

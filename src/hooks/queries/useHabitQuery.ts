@@ -2,7 +2,7 @@ import { HABITS } from '@/constant/apiEndpoint';
 import habitKeys from '@/utils/habitKeys';
 import { useQuery } from '@tanstack/react-query';
 
-const useHabitQuery = (id: string) => {
+const useHabitDetailQuery = (id: string) => {
     return useQuery({
         queryKey: habitKeys.habit(id),
         queryFn: async () => {
@@ -13,4 +13,4 @@ const useHabitQuery = (id: string) => {
     });
 };
 
-export default useHabitQuery;
+export default useHabitDetailQuery;

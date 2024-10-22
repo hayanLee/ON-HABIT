@@ -8,6 +8,7 @@ const HomePage = () => {
     const { selectedDay } = useDay();
     const { data: habits, isPending } = useHabitsQuery(selectedDay);
     if (isPending) return <div>loading..</div>;
+
     return (
         <div className='flex flex-col'>
             <Week />

@@ -6,7 +6,7 @@ import OutsideDay from './Day/OutsideDay';
 
 interface WeekProps {
     inside?: boolean;
-    onChangeDays?: (days: string[]) => void; // new-habit
+    onChangeDays?: (days: string[]) => void;
 }
 
 const daysOfWeek = Array.from({ length: 7 }, (_, idx) => dayjs().day(idx).format('ddd'));

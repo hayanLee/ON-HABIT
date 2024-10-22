@@ -1,7 +1,12 @@
+export type Period = {
+    day: string;
+    isFinished: boolean;
+};
+
 export type HabitInfo = {
     id: string;
     name: string;
-    period: string[];
+    periods: Period[];
     remind: string;
     isCompleted: boolean;
 };

@@ -17,7 +17,10 @@ const Habit = ({ habit, day }: HabitProps) => {
 
     return (
         <div className='flex-center py-4 border-b-2'>
-            <div className='flex flex-col grow gap-y-2' onClick={() => router.push(`${HABIT}/${id}`)}>
+            <div
+                className='flex flex-col grow gap-y-2'
+                onClick={() => router.push(`${HABIT}/${id}`, { scroll: false })}
+            >
                 <h4 className='subtitle'>{name}</h4>
                 {isCompleted ? (
                     <span className='bg-slate-500 text-white rounded w-fit'>Completed at 7:20AM</span>

@@ -3,5 +3,5 @@ export type HabitInfo = {
     name: string;
     period: string[];
     remind: string;
-    completed: boolean;
+    isCompleted: boolean;
 };

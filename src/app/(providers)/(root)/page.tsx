@@ -7,7 +7,6 @@ import Habit from './habit/_components/Habit';
 const HomePage = () => {
     const { selectedDay } = useDay();
     const { data: habits, isPending } = useHabitsQuery(selectedDay);
-
     if (isPending) return <div>loading..</div>;
     return (
         <div className='flex flex-col'>
@@ -17,7 +16,7 @@ const HomePage = () => {
 
             <div className='flex flex-col w-full'>
                 {habits?.map((habit, idx) => (
-                    <Habit key={idx} habit={habit} />
+                    <Habit key={idx} habit={habit} day={selectedDay} />
                 ))}
             </div>
         </div>

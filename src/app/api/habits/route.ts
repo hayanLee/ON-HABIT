@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     const newHabit = {
         id: crypto.randomUUID(),
         ...formData,
-        completed: false,
+        isCompleted: false,
     };
 
     const res = await fetch(HABITS, {
@@ -26,4 +26,18 @@ export async function POST(req: NextRequest) {
 
     const data = await res.json();
     return NextResponse.json({ data });
+}
+
+export async function PATCH(req: NextRequest) {
+    const updatedHabit = await req.json();
+
+    const res = await fetch(`${HABITS}/${updatedHabit.id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedHabit),
+    });
+
+    return NextResponse.json(await res.json());
 }

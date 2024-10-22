@@ -14,11 +14,12 @@ const NewHabitPage = () => {
     } = useForm({ mode: 'onChange' });
 
     const handleClick = (days: string[]) => {
-        setValue('period', days);
+        setValue('periods', days);
     };
 
     const { mutateAsync } = useCreateHabit();
-    const onSubmit = async (formData: FieldValues) => await mutateAsync(formData);
+    const onSubmit = async (formData: FieldValues) =>
+        await mutateAsync({ ...formData, periods: formData.periods.map((d) => ({ day: d, isFinished: false })) });
 
     return (
         <div className='h-full'>
@@ -32,7 +33,7 @@ const NewHabitPage = () => {
                 <div>
                     <h3 className='title'>Set periodicity</h3>
                     <Week onChangeDays={handleClick} inside />
-                    <input type='hidden' {...register('period', { required: 'Period is required' })} />
+                    <input type='hidden' {...register('periods', { required: 'Period is required' })} />
                 </div>
 
                 <div>

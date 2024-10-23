@@ -1,19 +1,21 @@
 'use client';
-import useHabitDetailQuery from '@/hooks/queries/useHabitDetailQuery';
+import { HabitInfo } from '@/types/Habit';
 import { WEEKDAYS } from '@/utils/dayjs';
 import { Fragment, useState } from 'react';
-import FinishedDay from './Day/FinishedDay';
+import CompletionDay from './Day/CompletionDay';
 import InsideDay from './Day/InsideDay';
 import OutsideDay from './Day/OutsideDay';
 
 interface WeekProps {
     inside?: boolean;
     onChangeDays?: (days: string[]) => void;
-    id?: string;
+    habit?: HabitInfo;
 }
 
-const Week = ({ inside = false, onChangeDays, id }: WeekProps) => {
-    const { data } = useHabitDetailQuery(id) || null;
+// 1. 메인 페이지 - 해당 요일의 습관 개수를 담음, 하나만 선택
+// 2. 디테일 페이지 - v 표시, 선택 불가
+// 3. add 페이지 - 다중선택
+const Week = ({ inside = false, onChangeDays, habit }: WeekProps) => {
     const [selectedDays, setSelectedDays] = useState<string[]>([]);
 
     const handleChange = (day: string) => {
@@ -22,7 +24,6 @@ const Week = ({ inside = false, onChangeDays, id }: WeekProps) => {
             : [...selectedDays, day];
 
         setSelectedDays(updatedSelected);
-
         if (onChangeDays) onChangeDays(updatedSelected);
     };
 
@@ -30,16 +31,15 @@ const Week = ({ inside = false, onChangeDays, id }: WeekProps) => {
         <div className='flex justify-between'>
             {WEEKDAYS.map((day) => (
                 <Fragment key={day}>
-                    {inside ? (
-                        <InsideDay day={day} onClick={handleChange} />
-                    ) : id ? (
-                        <div className='flex-center flex-col'>
-                            <span className='subtitle'>{day}</span>
-                            <FinishedDay />
-                        </div>
-                    ) : (
-                        <OutsideDay day={day} />
-                    )}
+                    <div className='flex-center flex-col'>
+                        {inside ? (
+                            <InsideDay day={day} onClick={handleChange} />
+                        ) : habit?.id ? (
+                            <CompletionDay day={day} habit={habit} />
+                        ) : (
+                            <OutsideDay day={day} />
+                        )}
+                    </div>
                 </Fragment>
             ))}
         </div>

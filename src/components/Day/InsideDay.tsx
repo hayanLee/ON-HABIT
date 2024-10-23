@@ -15,7 +15,7 @@ const InsideDay = ({ day, onClick }: InsideDayProps) => {
         onClick(day);
     };
     return (
-        <div className='flex-center flex-col'>
+        <>
             <label
                 htmlFor={day}
                 className={clsx(
@@ -26,7 +26,7 @@ const InsideDay = ({ day, onClick }: InsideDayProps) => {
                 <span className='font-medium'>{day}</span>
                 <input type='checkbox' id={day} className='hidden' checked={isChecked} onChange={handleClick} />
             </label>
-        </div>
+        </>
     );
 };
 

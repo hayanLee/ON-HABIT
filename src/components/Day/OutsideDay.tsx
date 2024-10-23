@@ -11,11 +11,12 @@ interface OutSideProps {
 const OutSideDay = ({ day }: OutSideProps) => {
     const { selectedDay, handleChangeDay } = useDayContext();
     const { data: habits } = useHabitsQuery(day);
+    const handleClick = () => handleChangeDay(day);
     return (
-        <div className='flex-center flex-col'>
+        <>
             <span className='subtitle'>{day}</span>
             <div
-                onClick={() => handleChangeDay(day)}
+                onClick={handleClick}
                 className={clsx(
                     'flex-center w-11 h-11 rounded-full cursor-pointer',
                     selectedDay === day ? 'bg-red-200' : 'bg-violet-300'
@@ -23,7 +24,7 @@ const OutSideDay = ({ day }: OutSideProps) => {
             >
                 <span className='subtitle'>{habits?.length || 0}</span>
             </div>
-        </div>
+        </>
     );
 };
 

@@ -10,7 +10,7 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
     const router = useRouter();
     const handleClick = () => router.back();
     const { data: habit, isPending } = useHabitDetailQuery(id);
-    const finishedCount = useMemo(() => habit?.periods.reduce((cnt, p) => cnt + (p.isFinished ? 1 : 0), 0), [habit]);
+    const finishedCount = useMemo(() => habit?.habitDays.reduce((cnt, p) => cnt + (p.isFinished ? 1 : 0), 0), [habit]);
 
     if (isPending) return <Loading />;
 
@@ -23,7 +23,7 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
                 </span>
             </div>
 
-            <Week id={id} />
+            <Week habit={habit} />
 
             <div className='flex-col-center text-lg'>
                 <p>

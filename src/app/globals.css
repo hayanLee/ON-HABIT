@@ -9,6 +9,10 @@
     .flex-col-center {
         @apply flex flex-col justify-center items-center;
     }
+    .flex-vertical {
+        @apply flex flex-col;
+    }
+
     .title {
         @apply text-lg font-bold;
     }

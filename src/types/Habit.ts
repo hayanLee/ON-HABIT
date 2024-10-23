@@ -1,4 +1,4 @@
-export type Period = {
+export type HabitStatus = {
     day: string;
     isFinished: boolean;
 };
@@ -6,7 +6,8 @@ export type Period = {
 export type HabitInfo = {
     id: string;
     name: string;
-    periods: Period[];
+    habitDays: HabitStatus[];
     remind: string;
     isCompleted: boolean;
+    scheduledDays: string[];
 };

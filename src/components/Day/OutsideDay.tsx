@@ -1,6 +1,6 @@
 'use client';
 
-import { useDay } from '@/contexts/day.context';
+import { useDayContext } from '@/contexts/day.context';
 import { useHabitsQuery } from '@/hooks/queries';
 import clsx from 'clsx';
 import React from 'react';
@@ -9,7 +9,7 @@ interface OutSideProps {
     day: string;
 }
 const OutSideDay = ({ day }: OutSideProps) => {
-    const { selectedDay, handleChangeDay } = useDay();
+    const { selectedDay, handleChangeDay } = useDayContext();
     const { data: habits } = useHabitsQuery(day);
     return (
         <div className='flex-center flex-col'>

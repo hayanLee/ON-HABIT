@@ -1,5 +1,5 @@
 'use client';
-import dayjs from 'dayjs';
+import { CURRENT_DAY } from '@/utils/dayjs';
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 interface DateContextType {
@@ -8,20 +8,20 @@ interface DateContextType {
 }
 
 const initialValue: DateContextType = {
-    selectedDay: dayjs().format('ddd'),
+    selectedDay: CURRENT_DAY,
     handleChangeDay: () => {},
 };
 
-const DateContext = createContext(initialValue);
+const DayContext = createContext(initialValue);
 
-export const useDay = () => useContext(DateContext);
+export const useDayContext = () => useContext(DayContext);
 
 function DateProvider({ children }: PropsWithChildren) {
     const [selectedDay, setSelectedDay] = useState<string>(initialValue.selectedDay);
     const handleChangeDay = (changedDay: string) => setSelectedDay(changedDay);
 
     const value = { selectedDay, handleChangeDay };
-    return <DateContext.Provider value={value}>{children}</DateContext.Provider>;
+    return <DayContext.Provider value={value}>{children}</DayContext.Provider>;
 }
 
 export default DateProvider;

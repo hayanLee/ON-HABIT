@@ -1,7 +1,8 @@
 'use client';
 import Button from '@/components/Button';
+import Loading from '@/components/Loading';
 import Week from '@/components/Week';
-import useHabitDetailQuery from '@/hooks/queries/useHabitQuery';
+import useHabitDetailQuery from '@/hooks/queries/useHabitDetailQuery';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 
@@ -11,8 +12,8 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
     const { data: habit, isPending } = useHabitDetailQuery(id);
     const finishedCount = useMemo(() => habit?.periods.reduce((cnt, p) => cnt + (p.isFinished ? 1 : 0), 0), [habit]);
 
-    if (isPending) return <div>loading..</div>;
-    console.log('렌더링', finishedCount, habit);
+    if (isPending) return <Loading />;
+
     return (
         <div className='bg-red-200 h-1/2 z-10 fixed w-inherit bottom-16 p-6 flex flex-col gap-y-6'>
             <div className='flex'>
@@ -22,7 +23,7 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
                 </span>
             </div>
 
-            <Week />
+            <Week id={id} />
 
             <div className='flex-col-center text-lg'>
                 <p>

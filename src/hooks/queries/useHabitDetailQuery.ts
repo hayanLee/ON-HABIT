@@ -10,6 +10,7 @@ const useHabitDetailQuery = (id: string) => {
             const result = await res.json();
             return result;
         },
+        enabled: !!id,
     });
 };
 

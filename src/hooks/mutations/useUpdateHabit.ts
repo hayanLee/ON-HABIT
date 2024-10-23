@@ -8,10 +8,9 @@ const useUpdateHabit = (day: string) => {
         mutationFn: async (habit: HabitInfo) => {
             const updatedHabit = {
                 ...habit,
-                periods: habit.periods.map((h) => (h.day === day ? { ...h, isFinished: !h.isFinished } : h)),
-                isCompleted: habit.periods.every((h) => h.isFinished),
+                habitDays: habit.habitDays.map((h) => (h.day === day ? { ...h, isFinished: !h.isFinished } : h)),
+                isCompleted: habit.habitDays.every((h) => h.isFinished),
             };
-
             const res = await fetch('/api/habits', {
                 method: 'PATCH',
                 body: JSON.stringify(updatedHabit),

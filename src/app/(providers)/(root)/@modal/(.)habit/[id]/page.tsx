@@ -2,7 +2,8 @@
 import Button from '@/components/Button';
 import Loading from '@/components/Loading';
 import Week from '@/components/Week';
-import useHabitDetailQuery from '@/hooks/queries/useHabitDetailQuery';
+import { useHabitDetailQuery } from '@/hooks/queries';
+
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 

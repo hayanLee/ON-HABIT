@@ -1,6 +1,7 @@
 'use client';
 import { HABIT } from '@/constant/pathname';
-import useUpdateHabit from '@/hooks/mutations/useUpdateHabit';
+import { useUpdateHabitMutation } from '@/hooks/mutations';
+
 import { HabitInfo } from '@/types/Habit';
 import { useRouter } from 'next/navigation';
 
@@ -14,7 +15,7 @@ const Habit = ({ habit, day }: HabitProps) => {
     const foundedPeriod = habitDays.find((period) => period.day === day);
 
     const router = useRouter();
-    const { mutateAsync } = useUpdateHabit(day);
+    const { mutateAsync } = useUpdateHabitMutation(day);
 
     const handleClick = () => router.push(`${HABIT}/${id}`, { scroll: false });
     const handleChecked = async () => await mutateAsync(habit);

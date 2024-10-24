@@ -1,5 +1,5 @@
 'use client';
-import { CURRENT_DAY } from '@/utils/dayjs';
+import { CURRENT_DAY } from '@/constant/dayjs';
 import { createContext, PropsWithChildren, useContext, useState } from 'react';
 
 interface DateContextType {

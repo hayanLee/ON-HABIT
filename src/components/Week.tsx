@@ -1,6 +1,6 @@
 'use client';
+import { WEEKDAYS } from '@/constant/dayjs';
 import { HabitInfo } from '@/types/Habit';
-import { WEEKDAYS } from '@/utils/dayjs';
 import { Fragment, useState } from 'react';
 import CompletionDay from './Day/CompletionDay';
 import InsideDay from './Day/InsideDay';

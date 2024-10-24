@@ -1,19 +1,13 @@
+import { fetchData } from '@/utils/fetchData';
 import habitKeys from '@/utils/habitKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FieldValues } from 'react-hook-form';
 
-const useCreateHabit = () => {
+const useCreateHabitMutation = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: async (data: FieldValues) => {
-            const res = await fetch('/api/habits', {
-                method: 'POST',
-                body: JSON.stringify(data),
-            });
-
-            if (!res.ok) throw Error('네트워크 에러');
-            return res.json();
-        },
+        mutationFn: async (data: FieldValues) =>
+            fetchData('/api/habits', { method: 'POST', body: JSON.stringify(data) }),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: habitKeys.habits() });
         },
@@ -21,4 +15,4 @@ const useCreateHabit = () => {
     });
 };
 
-export default useCreateHabit;
+export default useCreateHabitMutation;

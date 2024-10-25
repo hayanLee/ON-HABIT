@@ -23,7 +23,7 @@ const RootLayout = ({ children, modal }: RootLayoutProps) => {
                 <div className='bg-secondary h-16 w-inherit flex items-center justify-around'>
                     <Link href={HOME}>🏠</Link>
                     <Link href={HABIT_NEW}>
-                        <div className='flex-center bg-main rounded-full w-[40px] h-[40px]'>
+                        <div className='flex-center bg-main rounded-full size-lg'>
                             <span>✏️</span>
                         </div>
                     </Link>

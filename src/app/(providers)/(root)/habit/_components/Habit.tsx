@@ -34,7 +34,7 @@ const Habit = ({ habit, day }: HabitProps) => {
             </div>
             <input
                 type='checkbox'
-                className='w-6 h-6 rounded-full bg-secondary checked:bg-main appearance-none'
+                className='size-base rounded-full bg-secondary checked:bg-main appearance-none'
                 onChange={handleChecked}
                 checked={foundedPeriod?.isFinished}
             />

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-    @apply text-text;
+    @apply text-text-primary;
 }
 
 @layer utilities {

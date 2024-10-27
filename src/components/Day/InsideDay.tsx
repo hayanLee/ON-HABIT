@@ -16,14 +16,8 @@ const InsideDay = ({ day, onClick }: InsideDayProps) => {
     };
     return (
         <>
-            <label
-                htmlFor={day}
-                className={clsx(
-                    'flex-center w-11 h-11 rounded-full cursor-pointer',
-                    isChecked ? 'bg-red-200' : 'bg-violet-300'
-                )}
-            >
-                <span className='font-medium'>{day}</span>
+            <label htmlFor={day} className={clsx('day', isChecked && 'checked')}>
+                <span className='font-base'>{day}</span>
                 <input type='checkbox' id={day} className='hidden' checked={isChecked} onChange={handleClick} />
             </label>
         </>

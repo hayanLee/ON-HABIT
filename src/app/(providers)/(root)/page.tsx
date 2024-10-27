@@ -14,14 +14,14 @@ const HomePage = () => {
     return (
         <div className='flex-vertical'>
             <Week />
-            <>
-                <h3 className='title mt-4'>My Habits</h3>
+            <div className='mt-4'>
+                <h3 className='title'>My Habits</h3>
                 <div className='flex-vertical w-full'>
                     {habits?.map((habit) => (
                         <Habit key={habit.id} habit={habit} day={selectedDay} />
                     ))}
                 </div>
-            </>
+            </div>
         </div>
     );
 };

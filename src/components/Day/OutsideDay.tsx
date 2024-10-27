@@ -15,13 +15,7 @@ const OutSideDay = ({ day }: OutSideProps) => {
     return (
         <>
             <span className='subtitle'>{day}</span>
-            <div
-                onClick={handleClick}
-                className={clsx(
-                    'flex-center rounded-full cursor-pointer size-lg md:size-xl',
-                    selectedDay === day ? 'border-main border-2' : 'bg-secondary brightness-110 '
-                )}
-            >
+            <div onClick={handleClick} className={clsx('day', selectedDay === day && 'checked')}>
                 <span className='subtitle'>{habits?.length || 0}</span>
             </div>
         </>

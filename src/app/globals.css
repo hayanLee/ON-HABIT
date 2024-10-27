@@ -6,6 +6,18 @@ body {
     @apply text-text-primary;
 }
 
+@layer components {
+    .day {
+        @apply flex justify-center items-center rounded-full cursor-pointer w-8 h-8 bg-secondary brightness-125 md:size-xl;
+    }
+    .checked {
+        @apply bg-inherit border-main border-2;
+    }
+    .radio {
+        @apply px-4 py-2 rounded-full bg-secondary brightness-110;
+    }
+}
+
 @layer utilities {
     .size-xl {
         @apply w-11 h-11;
@@ -31,7 +43,7 @@ body {
     }
 
     .title {
-        @apply text-lg font-bold;
+        @apply text-lg font-bold my-2;
     }
     .subtitle {
         @apply text-base font-semibold;

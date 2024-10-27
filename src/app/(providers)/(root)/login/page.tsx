@@ -1,24 +1,28 @@
 'use client';
 import Button from '@/components/Button';
-import CustomLink from '@/components/CustomLink';
-
-import { ONBOARDING_INFO } from '@/constant/pathname';
-
+import Image from 'next/image';
+import Link from 'next/link';
+import LogoSVG from '/public/Image.svg';
 const LoginPage = () => {
     return (
-        <main className='flex flex-col justify-center h-full'>
-            <div className='mb-10'>
-                <div className='aspect-square bg-pink-50'>이미지</div>
-                <div className='flex-center flex-col my-4'>
-                    <h1 className='text-2xl font-bold'>ON HABIT</h1>
-                    <h3>Build habits and routines easily</h3>
+        <main className='flex-col-center h-full'>
+            <div className='mb-12'>
+                <Image src={LogoSVG} alt='' className='aspect-square' />
+                <div className='flex-center flex-col my-4 gap-y-2'>
+                    <h1 className='text-3xl font-bold'>On Habit</h1>
+                    <h3 className='text-text-secondary brightness-125'>Build habits and routines easily</h3>
                 </div>
             </div>
 
-            <div className='flex-center flex-col gap-6'>
-                <CustomLink href={ONBOARDING_INFO}>Start</CustomLink>
-                <Button>Sign Up with social</Button>
-            </div>
+            <Button disabled={false}>
+                <span className='font-semibold text-lg'>Let's Start</span>
+            </Button>
+            <p className='mt-4'>
+                Need an accout?{' '}
+                <Link href={'#'} className='font-semibold'>
+                    Sign up here
+                </Link>
+            </p>
         </main>
     );
 };

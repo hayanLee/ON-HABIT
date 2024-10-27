@@ -8,12 +8,7 @@ const CompletionDay = ({ day, habit }: FinishedDayProps) => {
     return (
         <>
             <span className='subtitle'>{day}</span>
-            <div
-                className={clsx(
-                    'flex-center w-11 h-11 rounded-full',
-                    habit?.scheduledDays.includes(day) ? 'bg-pink-50' : 'bg-gray-300'
-                )}
-            >
+            <div className={clsx('day cursor-default', habit?.scheduledDays.includes(day) && 'checked')}>
                 <span className='subtitle'>
                     {habit?.scheduledDays.includes(day)
                         ? habit?.habitDays.find((d) => d.day === day)?.isFinished

@@ -21,6 +21,10 @@ const config: Config = {
             width: {
                 inherit: 'inherit',
             },
+            animation: {
+                'bounce-delay-1': 'bounce 1s infinite 150ms',
+                'bounce-delay-2': 'bounce 1s infinite 300ms',
+            },
         },
     },
     plugins: [require('tailwind-scrollbar-hide')],

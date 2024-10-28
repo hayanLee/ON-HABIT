@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react';
 
 const CardContainer = ({ children }: PropsWithChildren) => {
-    return <div className='px-5 py-4 bg-slate-400 rounded'>{children}</div>;
+    return <div className='bg-secondary brightness-110 rounded-2xl p-6'>{children}</div>;
 };
 
 export default CardContainer;

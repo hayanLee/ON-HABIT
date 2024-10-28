@@ -13,15 +13,6 @@ export const fakeChartData = {
                 'rgba(255, 159, 64, 0.5)', // Sat
                 'rgba(99, 255, 132, 0.5)', // Sun
             ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)', // Mon
-                'rgba(54, 162, 235, 1)', // Tue
-                'rgba(255, 206, 86, 1)', // Wed
-                'rgba(75, 192, 192, 1)', // Thu
-                'rgba(153, 102, 255, 1)', // Fri
-                'rgba(255, 159, 64, 1)', // Sat
-                'rgba(99, 255, 132, 1)', // Sun
-            ],
             borderWidth: 1,
         },
     ],

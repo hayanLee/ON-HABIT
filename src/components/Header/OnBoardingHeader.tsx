@@ -12,7 +12,7 @@ const OnBoardingHeader = () => {
     };
 
     return (
-        <header className='flex justify-between'>
+        <header className='flex justify-between my-4'>
             <button onClick={handleClick}>⬅</button>
             {isOnboarding ? <p>1/4</p> : <h3>Add new habit</h3>}
         </header>

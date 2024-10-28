@@ -1,14 +1,13 @@
-import CustomLink from '@/components/CustomLink';
-import { HOME } from '@/constant/pathname';
+import Button from '@/components/Button';
 
 const CompletePage = () => {
     return (
         <div>
             <div className='flex-col-center gap-y-4 my-10'>
                 <p className='text-4xl'>✅</p>
-                <h3 className='title'>You are all set!</h3>
+                <h3 className='text-2xl font-bold'>You are all set!</h3>
             </div>
-            <CustomLink href={HOME}>Start Tracking</CustomLink>
+            <Button>Start Tracking</Button>
         </div>
     );
 };

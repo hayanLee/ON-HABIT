@@ -5,7 +5,11 @@ interface GridButtonProps {
 
 const GridButton = ({ id, children, ...props }: GridButtonProps) => {
     return (
-        <button id={id} {...props} className='aspect-square border rounded-xl hover:bg-red-100'>
+        <button
+            id={id}
+            {...props}
+            className='bg-secondary brightness-110 aspect-square rounded-xl hover:checked hover:bg-inherit '
+        >
             {children}
         </button>
     );

@@ -23,7 +23,7 @@ const ReminderPage = () => {
                 <h2 className='title'>When do you want us to remind you?</h2>
             </div>
 
-            <div className='grid grid-cols-2 mt-6 gap-6' onClick={handleClick}>
+            <div className='grid grid-cols-2 my-6 gap-6' onClick={handleClick}>
                 {reminders.map((reminder) => (
                     <GridButton id={reminder.title} key={reminder.title}>
                         <div>

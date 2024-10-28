@@ -6,6 +6,16 @@ body {
     @apply text-text-primary;
 }
 
+@layer base {
+    input[type='date'] {
+        @apply relative;
+    }
+
+    input[type='date']::-webkit-calendar-picker-indicator {
+        @apply absolute left-0 top-0 w-full h-full;
+    }
+}
+
 @layer components {
     .day {
         @apply flex justify-center items-center rounded-full cursor-pointer w-8 h-8 bg-secondary brightness-125 md:size-xl;

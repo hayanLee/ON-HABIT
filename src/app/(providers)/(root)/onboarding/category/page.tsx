@@ -53,10 +53,10 @@ const CategoryPage = () => {
                 <p className='text-base'>Choose one or more habits.</p>
             </div>
 
-            <div className='grid grid-cols-2 mt-6 gap-6' onClick={handleClick}>
+            <div className='grid grid-cols-2 my-6 gap-6' onClick={handleClick}>
                 {categories.map((category) => (
                     <GridButton id={category.title} key={category.title}>
-                        <div>
+                        <div className='flex-vertical gap-y-2'>
                             <p className='text-4xl'>{category.icon}</p>
                             <h4 className='subtitle'>{category.title}</h4>
                         </div>

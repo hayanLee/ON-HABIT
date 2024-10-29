@@ -20,7 +20,7 @@ const RootLayout = ({ children, modal }: RootLayoutProps) => {
             <div className='px-6 grow overflow-y-auto scrollbar-hide'>{children}</div>
             {modal}
             {!isLoginOrOnboarding && (
-                <div className='bg-secondary h-16 w-inherit flex items-center justify-around'>
+                <div className='bg-secondary h-20 w-inherit flex items-center justify-around'>
                     <Link href={HOME}>🏠</Link>
                     <Link href={HABIT_NEW}>
                         <div className='flex-center bg-main rounded-full size-lg'>

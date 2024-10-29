@@ -27,14 +27,14 @@ const Habit = ({ habit, day }: HabitProps) => {
                     {name}
                 </h4>
                 {foundedPeriod?.isFinished ? (
-                    <span className='bg-secondary rounded-lg w-fit px-2 font-semibold'>Completed at {remind}</span>
+                    <span className='bg-point rounded-lg w-fit px-2 font-semibold'>Completed at {remind}</span>
                 ) : (
                     <span className='text-text-disabled font-semibold'>unusally completed at {remind}</span>
                 )}
             </div>
             <input
                 type='checkbox'
-                className='size-base rounded-full bg-secondary checked:bg-main appearance-none'
+                className='size-base rounded-full bg-point checked:bg-main appearance-none'
                 onChange={handleChecked}
                 checked={foundedPeriod?.isFinished}
             />

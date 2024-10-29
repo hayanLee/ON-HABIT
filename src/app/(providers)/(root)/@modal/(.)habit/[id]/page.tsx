@@ -15,7 +15,7 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
     if (isPending) return <Loading />;
 
     return (
-        <div className='bg-secondary brightness-110 rounded-t-2xl h-1/2 z-10 fixed w-inherit bottom-16 p-6 flex flex-col gap-y-6'>
+        <div className='bg-secondary rounded-t-2xl h-1/2 z-10 fixed w-inherit bottom-16 p-6 flex flex-col gap-y-6'>
             <div className='flex'>
                 <h2 className='grow text-2xl font-bold'>{habit.name}</h2>
                 <span className='inline-block cursor-pointer' onClick={handleClick}>

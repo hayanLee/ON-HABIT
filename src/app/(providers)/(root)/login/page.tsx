@@ -2,7 +2,7 @@
 import Button from '@/components/Button';
 import Image from 'next/image';
 import Link from 'next/link';
-import LogoSVG from '/public/Image.svg';
+import LogoSVG from '/public/Image/Logo.svg';
 const LoginPage = () => {
     return (
         <main className='flex-col-center h-full'>
@@ -15,10 +15,10 @@ const LoginPage = () => {
             </div>
 
             <Button disabled={false}>
-                <span className='font-semibold text-lg'>Let's Start</span>
+                <span className='font-semibold text-lg'>Let&apos;s Start</span>
             </Button>
             <p className='mt-4'>
-                Need an accout?{' '}
+                Need an accout?
                 <Link href={'#'} className='font-semibold'>
                     Sign up here
                 </Link>

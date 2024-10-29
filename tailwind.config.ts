@@ -11,12 +11,13 @@ const config: Config = {
             colors: {
                 text: {
                     primary: '#DEDFE1',
-                    secondary: '#626771',
-                    disabled: '#9a9da3',
+                    secondary: '#7f8694',
+                    disabled: '#b4b4b4',
                 },
-                background: '#010A1A',
                 main: '#DB5447',
-                secondary: '#1E232E',
+                background: '#010A1A',
+                secondary: '#121824',
+                point: '#353D4A',
             },
             width: {
                 inherit: 'inherit',

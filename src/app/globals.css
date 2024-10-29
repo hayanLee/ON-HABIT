@@ -18,7 +18,7 @@ body {
 
 @layer components {
     .day {
-        @apply flex justify-center items-center rounded-full cursor-pointer w-8 h-8 bg-secondary brightness-125 md:size-xl;
+        @apply flex justify-center items-center rounded-full cursor-pointer w-8 h-8 bg-point md:size-xl;
     }
     .checked {
         @apply bg-inherit border-main border-2;

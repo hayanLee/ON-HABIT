@@ -1,5 +1,5 @@
-import DateProvider from '@/contexts/day.context';
-import QueryProvider from '@/provider/QueryProvider';
+import DateProvider from '@/contexts/DayContext';
+import QueryProvider from '@/providers/QueryProvider';
 import { PropsWithChildren } from 'react';
 
 const ProviderLayout = ({ children }: PropsWithChildren) => {

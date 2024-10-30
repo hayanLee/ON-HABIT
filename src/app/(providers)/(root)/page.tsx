@@ -1,7 +1,7 @@
 'use client';
 import Loading from '@/components/Loading';
 import Week from '@/components/Week';
-import { useDayContext } from '@/contexts/day.context';
+import { useDayContext } from '@/contexts/DayContext';
 import { useHabitsQuery } from '@/hooks/queries';
 import Habit from './habit/_components/Habit';
 

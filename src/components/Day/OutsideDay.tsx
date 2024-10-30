@@ -1,6 +1,6 @@
 'use client';
 
-import { useDayContext } from '@/contexts/day.context';
+import { useDayContext } from '@/contexts/DayContext';
 import { useHabitsQuery } from '@/hooks/queries';
 import clsx from 'clsx';
 import React from 'react';

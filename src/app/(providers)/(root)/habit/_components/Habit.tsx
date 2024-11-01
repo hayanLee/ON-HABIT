@@ -1,6 +1,7 @@
 'use client';
 import { HABIT } from '@/constant/pathname';
 import { useUpdateHabitMutation } from '@/hooks/mutations';
+import useModalStore from '@/stores/store';
 import { HabitInfo } from '@/types/Habit';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -17,7 +18,12 @@ const Habit = ({ habit, day }: HabitProps) => {
     const router = useRouter();
     const { mutateAsync } = useUpdateHabitMutation(day);
 
-    const handleClick = () => router.push(`${HABIT}/${id}`, { scroll: false });
+    const { openModal } = useModalStore(); // 모달 열기 상태 가져오기
+
+    const handleClick = () => {
+        openModal();
+        router.push(`${HABIT}/${id}`, { scroll: false });
+    };
     const handleChecked = async () => await mutateAsync(habit);
 
     return (

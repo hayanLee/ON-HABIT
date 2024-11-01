@@ -1,11 +1,16 @@
-import { HABITS } from '@/constant/apiEndpoint';
 import { HabitInfo } from '@/types/Habit';
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
-    const res = await fetch(HABITS);
+export async function GET(req: NextRequest) {
+    const { searchParams } = new URL(req.url);
+    const day = searchParams.get('day');
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_JSONSERVER_URL}`);
+
     const habits: HabitInfo[] = await res.json();
-    return NextResponse.json(habits);
+    const filteredHabits = day ? habits.filter((habit) => habit.scheduledDays.includes(day)) : habits;
+
+    return NextResponse.json(filteredHabits);
 }
 
 export async function POST(req: NextRequest) {
@@ -16,7 +21,7 @@ export async function POST(req: NextRequest) {
         isCompleted: false,
     };
 
-    const res = await fetch(HABITS, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_JSONSERVER_URL}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -31,7 +36,7 @@ export async function POST(req: NextRequest) {
 export async function PATCH(req: NextRequest) {
     const updatedHabit = await req.json();
 
-    const res = await fetch(`${HABITS}/${updatedHabit.id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_JSONSERVER_URL}/${updatedHabit.id}`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',

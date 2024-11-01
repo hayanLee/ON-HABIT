@@ -1,12 +1,12 @@
 'use client';
 import Loading from '@/components/Loading';
 import Week from '@/components/Week';
-import { useDayContext } from '@/contexts/DayContext';
 import { useHabitsQuery } from '@/hooks/queries';
+import { useDayStore } from '@/stores/store';
 import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
-    const { selectedDay } = useDayContext();
+    const { selectedDay } = useDayStore();
     const { data: habits, isPending } = useHabitsQuery(selectedDay);
 
     if (isPending) return <Loading />;

@@ -1,4 +1,3 @@
-'use client';
 import Button from '@/components/Button';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,14 +14,13 @@ const LoginPage = () => {
             </div>
 
             <Button disabled={false}>
-                <span className='font-semibold text-lg'>Let&apos;s Start</span>
-            </Button>
-            <p className='mt-4'>
-                Need an accout?
-                <Link href={'#'} className='font-semibold'>
-                    Sign up here
+                <Link
+                    href={`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/provider?provider=kakao`}
+                    className='font-semibold inline-block'
+                >
+                    <span className='font-semibold'>Start with Kakao</span>
                 </Link>
-            </p>
+            </Button>
         </main>
     );
 };

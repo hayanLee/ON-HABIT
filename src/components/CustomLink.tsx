@@ -1,14 +1,18 @@
+import { HABIT_NEW } from '@/constant/pathname';
+import clsx from 'clsx';
 import Link from 'next/link';
-import { PropsWithChildren } from 'react';
 
-interface CustomLinkProps extends PropsWithChildren {
+type CustomLinkProps = {
     href: string;
-}
+    children: React.ReactNode;
+};
 
-const CustomLink = ({ children, href }: CustomLinkProps) => {
+const CustomLink = ({ href, children }: CustomLinkProps) => {
     return (
-        <Link href={href} className='bg-orange-200 w-full inline-block text-center flex-center'>
-            {children}
+        <Link href={href} className='w-full h-full inline-block flex-center'>
+            <span className={clsx('text-2xl flex-center', href === HABIT_NEW && 'bg-main rounded-full w-12 h-12')}>
+                {children}
+            </span>
         </Link>
     );
 };

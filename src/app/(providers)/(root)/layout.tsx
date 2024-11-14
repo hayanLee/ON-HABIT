@@ -1,7 +1,7 @@
 'use client';
+import CustomLink from '@/components/CustomLink';
 import MainHeader from '@/components/Header/MainHeader';
 import { HABIT_NEW, HOME, MYPAGE } from '@/constant/pathname';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 
@@ -21,13 +21,9 @@ const RootLayout = ({ children, modal }: RootLayoutProps) => {
             {modal}
             {!isLoginOrOnboarding && (
                 <div className='bg-secondary h-20 w-inherit flex items-center justify-around'>
-                    <Link href={HOME}>🏠</Link>
-                    <Link href={HABIT_NEW}>
-                        <div className='flex-center bg-main rounded-full size-lg'>
-                            <span>✏️</span>
-                        </div>
-                    </Link>
-                    <Link href={MYPAGE}>🙂</Link>
+                    <CustomLink href={HOME}>🏠</CustomLink>
+                    <CustomLink href={HABIT_NEW}>+</CustomLink>
+                    <CustomLink href={MYPAGE}>🙂</CustomLink>
                 </div>
             )}
         </div>

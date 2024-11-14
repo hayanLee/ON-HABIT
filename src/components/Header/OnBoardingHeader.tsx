@@ -1,20 +1,17 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import useProgressStore from '@/stores/progress.store';
+import Progress from '../Progress';
 
 const OnBoardingHeader = () => {
-    const router = useRouter();
-    const pathname = usePathname();
-    const isOnboarding = pathname.startsWith('/onboarding');
-
-    const handleClick = () => {
-        router.back();
-    };
-
+    const progress = useProgressStore((state) => state.progress);
+    const step = useProgressStore((state) => state.step);
     return (
-        <header className='flex justify-between my-4'>
-            <button onClick={handleClick}>⬅</button>
-            {isOnboarding ? <p>1/4</p> : <h3>Add new habit</h3>}
+        <header className='flex-vertical mt-4 gap-y-2'>
+            <p className='text-right'>
+                {progress}/{step}
+            </p>
+            <Progress />
         </header>
     );
 };

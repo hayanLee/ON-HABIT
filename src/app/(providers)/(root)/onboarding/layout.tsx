@@ -6,7 +6,6 @@ const OnBoardingLayout = ({ children }: PropsWithChildren) => {
         <div className='flex-vertical h-full'>
             <div className='mb-6'>
                 <OnBoardingHeader />
-                <div className='h-2 bg-main rounded' />
             </div>
             <div className='grow overflow-y-auto scrollbar-hide'>{children}</div>
         </div>

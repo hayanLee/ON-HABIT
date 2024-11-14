@@ -1,6 +1,8 @@
 'use client';
 import Button from '@/components/Button';
 import GridButton from '@/components/GridButton';
+import useProgressStore from '@/stores/progress.store';
+import { useEffect } from 'react';
 
 const categories = [
     {
@@ -38,6 +40,11 @@ const categories = [
 ];
 
 const CategoryPage = () => {
+    const setProgress = useProgressStore((state) => state.setProgress);
+    useEffect(() => {
+        setProgress(2);
+    }, []);
+
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const btn = e.target as HTMLElement;
         const target = btn.closest('button');

@@ -1,8 +1,9 @@
 'use client';
 import CardContainer from '@/components/CardContainer';
 import { fakeChartData } from '@/constant/fakeChartData';
-import ProgressBar from '@ramonak/react-progress-bar';
+
 import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Tooltip } from 'chart.js';
+import clsx from 'clsx';
 import { Bar } from 'react-chartjs-2';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
@@ -20,13 +21,9 @@ const MyPage = () => {
             <CardContainer>
                 <h3 className='subtitle mb-2'>Weekly progress</h3>
                 <h4 className='text-2xl font-bold my-2'>67%</h4>
-                <ProgressBar
-                    completed={67}
-                    bgColor='#d8d8d8'
-                    isLabelVisible={false}
-                    baseBgColor='#070707'
-                    labelColor='#e80909'
-                />
+                <div className='w-full bg-gray-50 rounded-full h-3'>
+                    <div className={clsx(`bg-main h-3 rounded-full w-1/2 transition-all duration-500`)} />
+                </div>
             </CardContainer>
 
             <CardContainer>
@@ -43,15 +40,7 @@ const MyPage = () => {
                             },
                         },
                         scales: {
-                            // x: {
-                            //     ticks: {
-                            //         color: 'orange',
-                            //     },
-                            // },
                             y: {
-                                // ticks: {
-                                //     color: 'green',
-                                // },
                                 beginAtZero: true,
                                 max: 100,
                             },

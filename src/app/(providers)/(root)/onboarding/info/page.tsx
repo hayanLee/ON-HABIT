@@ -1,8 +1,10 @@
 'use client';
 import Button from '@/components/Button';
 import { ONBOARDING_CATEGORY } from '@/constant/pathname';
+import useProgressStore from '@/stores/progress.store';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 
 type Inputs = {
@@ -10,11 +12,16 @@ type Inputs = {
 };
 
 const InfoPage = () => {
+    const setProgress = useProgressStore((state) => state.setProgress);
+    useEffect(() => {
+        setProgress(1);
+    }, [setProgress]);
+
     const router = useRouter();
     const {
         register,
         handleSubmit,
-        formState: { errors, isValid, isDirty },
+        formState: { isValid, isDirty },
     } = useForm<Inputs>({
         defaultValues: {
             nickname: '',
@@ -56,7 +63,6 @@ const InfoPage = () => {
                         max={new Date().toISOString().split('T')[0]}
                     />
                 </label>
-
                 <label htmlFor='location' className='grid grid-cols-3 items-center  w-full'>
                     <span>Location</span>
                     <select

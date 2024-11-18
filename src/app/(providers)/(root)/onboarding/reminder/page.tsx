@@ -2,6 +2,7 @@
 import Button from '@/components/Button';
 import GridButton from '@/components/GridButton';
 import { ONBOARDING_COMPLETE } from '@/constant/pathname';
+import useCategoryStore from '@/stores/category.store';
 import useProgressStore from '@/stores/progress.store';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
@@ -18,22 +19,34 @@ const ReminderPage = () => {
     const [chosenTime, setChosenTime] = useState<string>('');
 
     const setProgress = useProgressStore((state) => state.setProgress);
+    const chosenCategories = useCategoryStore((state) => state.chosenCategories);
+
     useEffect(() => {
         setProgress(3);
     }, [setProgress]);
+
     const handleCategoryClick = (e: React.MouseEvent<HTMLDivElement>) => {
         const btn = e.target as HTMLElement;
         const target = btn.closest('button');
         const targetId = target?.id;
 
         if (!targetId) return;
-
+        console.log(targetId);
         setChosenTime(targetId);
     };
 
-    const handleButtonClick = () => {
-        console.log(chosenTime);
-        router.push(ONBOARDING_COMPLETE);
+    const onSubmit = async () => {
+        const data = {
+            chosenCategories,
+            chosenTime,
+        };
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/habits`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+
+        if (response.ok) router.push(ONBOARDING_COMPLETE);
     };
     return (
         <div>
@@ -43,7 +56,7 @@ const ReminderPage = () => {
             <div className='grid grid-cols-2 my-6 gap-6' onClick={handleCategoryClick}>
                 {reminders.map((reminder) => (
                     <GridButton
-                        id={reminder.title}
+                        id={reminder.time}
                         key={reminder.title}
                         className={clsx(chosenTime === reminder.title && 'border border-main')}
                     >
@@ -54,7 +67,7 @@ const ReminderPage = () => {
                     </GridButton>
                 ))}
             </div>
-            <Button disabled={!chosenTime.length} onClick={handleButtonClick}>
+            <Button disabled={!chosenTime.length} onClick={onSubmit}>
                 next
             </Button>
         </div>

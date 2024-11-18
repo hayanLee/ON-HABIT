@@ -2,10 +2,11 @@
 import Button from '@/components/Button';
 import GridButton from '@/components/GridButton';
 import { ONBOARDING_REMINDER } from '@/constant/pathname';
+import useCategoryStore from '@/stores/category.store';
 import useProgressStore from '@/stores/progress.store';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 const categories = [
     {
@@ -44,7 +45,8 @@ const categories = [
 
 const CategoryPage = () => {
     const router = useRouter();
-    const [chosenCategories, setChosenCategories] = useState<string[]>([]);
+    const { chosenCategories, setChosenCategories } = useCategoryStore((state) => state);
+    // const [chosenCategories, setChosenCategories] = useState<string[]>([]);
     const setProgress = useProgressStore((state) => state.setProgress);
     useEffect(() => {
         setProgress(2);
@@ -56,14 +58,11 @@ const CategoryPage = () => {
         const targetId = target?.id;
 
         if (!targetId) return;
-
-        setChosenCategories((prev) =>
-            prev.includes(targetId) ? chosenCategories.filter((ct) => ct !== targetId) : [...prev, targetId]
-        );
+        setChosenCategories(targetId);
     };
 
     const handleButtonClick = () => {
-        console.log(chosenCategories);
+        // console.log(chosenCategories);
         router.push(ONBOARDING_REMINDER);
     };
     return (

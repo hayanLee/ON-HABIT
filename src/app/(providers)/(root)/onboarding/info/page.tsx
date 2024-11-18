@@ -1,14 +1,15 @@
 'use client';
 import Button from '@/components/Button';
-import { ONBOARDING_CATEGORY } from '@/constant/pathname';
 import useProgressStore from '@/stores/progress.store';
 import clsx from 'clsx';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
-type Inputs = {
-    [key: string]: string;
+export type InfoFormValues = {
+    nickname: string;
+    birth: string;
+    location: string;
 };
 
 const InfoPage = () => {
@@ -17,22 +18,26 @@ const InfoPage = () => {
         setProgress(1);
     }, [setProgress]);
 
-    const router = useRouter();
     const {
         register,
         handleSubmit,
-        formState: { isValid, isDirty },
-    } = useForm<Inputs>({
+        formState: { isValid, isDirty, errors },
+    } = useForm<InfoFormValues>({
         defaultValues: {
             nickname: '',
             birth: '',
-            live: '1',
+            location: 'seoul',
         },
         mode: 'onChange',
     });
-    const onSubmit = (data: FieldValues) => {
-        console.log(data);
-        router.push(ONBOARDING_CATEGORY);
+    const router = useRouter();
+
+    const onSubmit = async (data: InfoFormValues) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/user`, {
+            method: 'PATCH',
+            body: JSON.stringify(data),
+        });
+        if (response.ok) router.push('/onboarding/category');
     };
 
     return (
@@ -52,6 +57,7 @@ const InfoPage = () => {
                         })}
                     />
                 </label>
+                {/* {errors.nickname && <p className='text-blue-300'>{errors.nickname?.message}</p>} */}
                 <label htmlFor='birth' className='grid grid-cols-3 items-center  w-full'>
                     <span>Birth</span>
                     <input
@@ -67,25 +73,25 @@ const InfoPage = () => {
                     <span>Location</span>
                     <select
                         id='location'
-                        {...register('live')}
-                        className={clsx('col-span-2 p-4 bg-inherit border-b border-secondary')}
+                        {...register('location')}
+                        className='col-span-2 p-4 bg-inherit border-b border-secondary'
                     >
-                        <option value='1'>서울</option>
-                        <option value='2'>부산</option>
-                        <option value='3'>대구</option>
-                        <option value='4'>인천</option>
-                        <option value='5'>광주</option>
-                        <option value='6'>대전</option>
-                        <option value='7'>울산</option>
-                        <option value='8'>강원</option>
-                        <option value='9'>경기</option>
-                        <option value='10'>경남</option>
-                        <option value='11'>경북</option>
-                        <option value='12'>전남</option>
-                        <option value='13'>전북</option>
-                        <option value='14'>제주</option>
-                        <option value='15'>충남</option>
-                        <option value='16'>충북</option>
+                        <option value='seoul'>서울</option>
+                        <option value='busan'>부산</option>
+                        <option value='daegu'>대구</option>
+                        <option value='incheon'>인천</option>
+                        <option value='gwangju'>광주</option>
+                        <option value='daejeon'>대전</option>
+                        <option value='ulsan'>울산</option>
+                        <option value='gangwon'>강원</option>
+                        <option value='gyeonggi'>경기</option>
+                        <option value='gyeongnam'>경남</option>
+                        <option value='gyeongbuk'>경북</option>
+                        <option value='jeonnam'>전남</option>
+                        <option value='jeonbuk'>전북</option>
+                        <option value='jeju'>제주</option>
+                        <option value='chungnam'>충남</option>
+                        <option value='chungbuk'>충북</option>
                     </select>
                 </label>
                 <Button disabled={!isValid || !isDirty}>Next</Button>

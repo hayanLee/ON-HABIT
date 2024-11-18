@@ -8,29 +8,31 @@ export async function GET(request: Request) {
     // if "next" is in param, use it as the redirect URL
     const next = searchParams.get('next') ?? '/';
 
-    if (code) {
-        const supabase = await createClient();
-        const { error } = await supabase.auth.exchangeCodeForSession(code);
-        if (!error) {
-            const {
-                data: { user },
-            } = await supabase.auth.getUser();
-
-            if (user) {
-                const { data: userData, error: userError } = await supabase
-                    .from('users')
-                    .select('isFirstLogin')
-                    .eq('id', user.id)
-                    .single();
-
-                if (userError) throw userError;
-                if (userData.isFirstLogin) return NextResponse.redirect(`${origin}/onboarding/info`);
-            }
-
-            return NextResponse.redirect(`${origin}${next}`);
-        }
-    }
-
     // return the user to an error page with instructions
-    return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+    if (!code) return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+
+    const supabase = await createClient();
+    const { error: authError } = await supabase.auth.exchangeCodeForSession(code);
+    if (authError) return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+
+    const {
+        data: { user },
+        error: userError,
+    } = await supabase.auth.getUser();
+    if (!user || userError) return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+
+    const { data: userData, error: userDataError } = await supabase
+        .from('users')
+        .select('is_first_login, nickname')
+        .eq('id', user.id)
+        .single();
+    if (userDataError) throw userDataError;
+
+    const redirectUrl = userData.is_first_login
+        ? userData.nickname
+            ? `${origin}/onboarding/category`
+            : `${origin}/onboarding/info`
+        : `${origin}${next}`;
+
+    return NextResponse.redirect(redirectUrl);
 }

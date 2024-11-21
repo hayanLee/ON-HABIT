@@ -5,20 +5,20 @@ import { useCreateHabitMutation } from '@/hooks/mutations';
 import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
-interface FormData {
+export interface NewHabit {
     name: string;
     scheduledDays: string[];
     remind: string;
 }
 
 const NewHabitPage = () => {
-    const { mutateAsync } = useCreateHabitMutation();
+    const { mutate } = useCreateHabitMutation();
     const {
         register,
         handleSubmit,
         formState: { isValid },
         setValue,
-    } = useForm<FormData>({
+    } = useForm<NewHabit>({
         mode: 'onChange',
         defaultValues: {
             name: '',
@@ -28,12 +28,7 @@ const NewHabitPage = () => {
     });
 
     const handleClick = (days: string[]) => setValue('scheduledDays', days);
-
-    const onSubmit = async (formData: FormData) =>
-        await mutateAsync({
-            ...formData,
-            habitDays: formData.scheduledDays.map((d) => ({ day: d, isFinished: false })),
-        });
+    const onSubmit = (formData: NewHabit) => mutate(formData);
 
     return (
         <div className='my-8'>

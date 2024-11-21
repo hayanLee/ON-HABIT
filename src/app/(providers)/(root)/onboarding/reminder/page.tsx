@@ -41,7 +41,7 @@ const ReminderPage = () => {
             chosenTime,
         };
 
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/habits`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/onboarding`, {
             method: 'POST',
             body: JSON.stringify(data),
         });

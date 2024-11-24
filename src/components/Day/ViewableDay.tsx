@@ -1,5 +1,4 @@
 'use client';
-
 import { useHabitsQuery } from '@/hooks/queries';
 import { useDayStore } from '@/stores/store';
 import clsx from 'clsx';
@@ -8,7 +7,9 @@ import React from 'react';
 interface OutSideProps {
     day: string;
 }
-const OutSideDay = ({ day }: OutSideProps) => {
+
+// home
+const ViewableDay = ({ day }: OutSideProps) => {
     const { selectedDay, updateDay } = useDayStore();
     const { data: habits } = useHabitsQuery(day);
     const handleClick = () => updateDay(day);
@@ -22,4 +23,4 @@ const OutSideDay = ({ day }: OutSideProps) => {
     );
 };
 
-export default React.memo(OutSideDay);
+export default React.memo(ViewableDay);

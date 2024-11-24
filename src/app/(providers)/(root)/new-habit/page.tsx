@@ -18,6 +18,7 @@ const NewHabitPage = () => {
         handleSubmit,
         formState: { isValid },
         setValue,
+        getValues,
     } = useForm<NewHabit>({
         mode: 'onChange',
         defaultValues: {
@@ -27,7 +28,12 @@ const NewHabitPage = () => {
         },
     });
 
-    const handleClick = (days: string[]) => setValue('scheduledDays', days);
+    const updateScheduleDays = (day: string) => {
+        const prev = getValues('scheduledDays');
+        const updatedScheduledDays = prev.includes(day) ? prev.filter((d) => d !== day) : [...prev, day];
+        setValue('scheduledDays', updatedScheduledDays);
+    };
+
     const onSubmit = (formData: NewHabit) => mutate(formData);
 
     return (
@@ -42,7 +48,7 @@ const NewHabitPage = () => {
 
                 <div>
                     <h3 className='title'>Set periodicity</h3>
-                    <Week onChangeDays={handleClick} inside />
+                    <Week onSelectDays={updateScheduleDays} type='multi-select' />
                     <input type='hidden' {...register('scheduledDays', { required: 'scheduledDays is required' })} />
                 </div>
 

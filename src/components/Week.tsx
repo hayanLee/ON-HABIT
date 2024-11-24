@@ -1,46 +1,38 @@
 'use client';
 import { WEEKDAYS } from '@/constant/dayjs';
-import { HabitInfo } from '@/types/Habit';
-import { Fragment, useState } from 'react';
-import CompletionDay from './Day/CompletionDay';
-import InsideDay from './Day/InsideDay';
-import OutsideDay from './Day/OutsideDay';
+import { Tables } from '@/types/supabase';
+import MultiSelectableDay from './Day/MultiSelectableDay';
+import ReadOnlyDay from './Day/ReadOnlyDay';
+import ViewableDay from './Day/ViewableDay';
 
 interface WeekProps {
-    inside?: boolean;
-    onChangeDays?: (days: string[]) => void;
-    habit?: HabitInfo;
+    onSelectDays?: (days: string) => void;
+    type: 'multi-select' | 'read-only' | 'viewable';
+    habit?: Tables<'habits'>;
 }
 
-// 1. 메인 페이지 - 해당 요일의 습관 개수를 담음, 하나만 선택
-// 2. 디테일 페이지 - v 표시, 선택 불가
-// 3. add 페이지 - 다중선택
-const Week = ({ inside = false, onChangeDays, habit }: WeekProps) => {
-    const [selectedDays, setSelectedDays] = useState<string[]>([]);
+const Week = ({ onSelectDays, type, habit }: WeekProps) => {
+    const handleDayClick = (day: string) => {
+        if (onSelectDays) onSelectDays(day);
+    };
 
-    const handleChange = (day: string) => {
-        const updatedSelected = selectedDays.includes(day)
-            ? selectedDays.filter((d) => d !== day)
-            : [...selectedDays, day];
-
-        setSelectedDays(updatedSelected);
-        if (onChangeDays) onChangeDays(updatedSelected);
+    const renderedDay = (day: string) => {
+        switch (type) {
+            case 'multi-select':
+                return <MultiSelectableDay day={day} onClick={handleDayClick} />;
+            case 'read-only':
+                return <ReadOnlyDay day={day} habit={habit} />;
+            case 'viewable':
+                return <ViewableDay day={day} />;
+        }
     };
 
     return (
         <div className='flex justify-between'>
             {WEEKDAYS.map((day) => (
-                <Fragment key={day}>
-                    <div className='flex-center flex-col'>
-                        {inside ? (
-                            <InsideDay day={day} onClick={handleChange} />
-                        ) : habit?.id ? (
-                            <CompletionDay day={day} habit={habit} />
-                        ) : (
-                            <OutsideDay day={day} />
-                        )}
-                    </div>
-                </Fragment>
+                <div className='flex-center flex-col' key={day}>
+                    {renderedDay(day)}
+                </div>
             ))}
         </div>
     );

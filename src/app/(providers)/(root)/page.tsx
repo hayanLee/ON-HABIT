@@ -13,7 +13,7 @@ const HomePage = () => {
 
     return (
         <div className='flex-vertical'>
-            <Week />
+            <Week type='viewable' />
             <div className='mt-4'>
                 <h3 className='title'>My Habits</h3>
                 <div className='flex-vertical w-full'>

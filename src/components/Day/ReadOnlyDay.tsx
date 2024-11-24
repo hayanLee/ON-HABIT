@@ -1,7 +1,8 @@
 import { HabitProps } from '@/app/(providers)/(root)/habit/_components/Habit';
 import clsx from 'clsx';
 
-const CompletionDay = ({ day, habit }: HabitProps) => {
+// modal
+const ReadOnlyDay = ({ day, habit }: HabitProps) => {
     const { scheduled_days } = habit;
 
     return (
@@ -22,4 +23,4 @@ const CompletionDay = ({ day, habit }: HabitProps) => {
     );
 };
 
-export default CompletionDay;
+export default ReadOnlyDay;

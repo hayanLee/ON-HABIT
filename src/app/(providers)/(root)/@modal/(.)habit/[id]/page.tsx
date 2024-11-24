@@ -26,7 +26,7 @@ const Modal = ({ params: { id } }: { params: { id: string } }) => {
                     </button>
                 </div>
 
-                <Week habit={habit} />
+                <Week habit={habit} type='read-only' />
 
                 <div className='flex-col-center text-lg'>
                     <p className='subtitle'>Great job!</p>

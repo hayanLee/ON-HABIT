@@ -1,46 +1,39 @@
 'use client';
+
 import Button from '@/components/Button';
-import Loading from '@/components/Loading';
 import Week from '@/components/Week';
 import { useHabitDetailQuery } from '@/hooks/queries';
-import useModalStore from '@/stores/store';
-import { useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Modal = ({ params: { id } }: { params: { id: string } }) => {
-    const { isModalOpen, closeModal } = useModalStore();
+    const router = useRouter();
     const { data: habit, isPending } = useHabitDetailQuery(id);
 
-    const handleClick = () => {
-        closeModal();
+    const handleCloseModal = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        router.back();
     };
 
-    const finishedCount = useMemo(
-        () => habit?.habitDays.reduce((cnt: number, p: any) => cnt + (p.isFinished ? 1 : 0), 0),
-        [habit]
-    );
-
-    if (isPending) return <Loading />;
-    if (!isModalOpen) return null;
+    if (isPending) return;
 
     return (
-        <div className='bg-secondary rounded-t-2xl h-1/2 z-10 fixed w-inherit bottom-16 p-6 flex flex-col gap-y-6'>
-            <div className='flex'>
-                <h2 className='grow text-2xl font-bold'>{habit.name}</h2>
-                <span className='inline-block cursor-pointer' onClick={handleClick}>
-                    ❌
-                </span>
+        <div className='absolute bg-black/50 inset-0 z-10 flex items-center justify-center' onClick={handleCloseModal}>
+            <div className='bg-secondary rounded-2xl h-1/2 w-full bottom-16 p-6 flex flex-col gap-y-6'>
+                <div className='flex'>
+                    <h2 className='grow text-2xl font-bold'>{habit.habit_name}</h2>
+                    <button className='inline-block cursor-pointer' onClick={handleCloseModal}>
+                        ❌
+                    </button>
+                </div>
+
+                <Week habit={habit} />
+
+                <div className='flex-col-center text-lg'>
+                    <p className='subtitle'>Great job!</p>
+                </div>
+
+                <Button disabled={false}>See My statistics</Button>
             </div>
-
-            <Week habit={habit} />
-
-            <div className='flex-col-center text-lg'>
-                <p className='subtitle'>
-                    This week you have, <span className='title text-main'>{finishedCount}</span> out of 7 days!
-                </p>
-                <p className='subtitle'>Great job!</p>
-            </div>
-
-            <Button disabled={false}>See My statistics</Button>
         </div>
     );
 };

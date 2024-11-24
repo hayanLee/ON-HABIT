@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 const useHabitDetailQuery = (id: string) => {
     return useQuery({
         queryKey: habitKeys.habit(id),
-        queryFn: async () => await fetchData(`${process.env.NEXT_PUBLIC_JSONSERVER_URL}/${id}`),
+        queryFn: async () => await fetchData(`${process.env.NEXT_PUBLIC_BASE_URL}/api/habit/?id=${id}`),
         enabled: !!id,
     });
 };

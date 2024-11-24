@@ -1,4 +1,4 @@
-import { HabitInfo } from '@/types/Habit';
+import { Tables } from '@/types/supabase';
 import { fetchData } from '@/utils/fetchData';
 import habitKeys from '@/utils/habitKeys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -6,12 +6,12 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 const useUpdateHabitMutation = (day: string) => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: async (habit: HabitInfo) => {
-            const updatedHabit = {
-                ...habit,
-                habitDays: habit.habitDays.map((h) => (h.day === day ? { ...h, isFinished: !h.isFinished } : h)),
-                isCompleted: habit.habitDays.every((h) => h.isFinished),
-            };
+        mutationFn: async (habit: Tables<'habits'>) => {
+            // const updatedHabit = {
+            //     ...habit,
+            //     habitDays: habit.habitDays.map((h) => (h.day === day ? { ...h, isFinished: !h.isFinished } : h)),
+            //     isCompleted: habit.habitDays.every((h) => h.isFinished),
+            // };
 
             return fetchData('/api/habits', {
                 method: 'PATCH',

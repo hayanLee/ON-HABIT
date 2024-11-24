@@ -2,18 +2,12 @@
 import Loading from '@/components/Loading';
 import Week from '@/components/Week';
 import { useHabitsQuery } from '@/hooks/queries';
-import useModalStore, { useDayStore } from '@/stores/store';
-import { useEffect } from 'react';
+import { useDayStore } from '@/stores/store';
 import Habit from './habit/_components/Habit';
 
 const HomePage = () => {
     const { selectedDay } = useDayStore();
-    const { closeModal } = useModalStore();
     const { data: habits, isPending } = useHabitsQuery(selectedDay);
-
-    useEffect(() => {
-        return () => closeModal();
-    }, []);
 
     if (isPending) return <Loading />;
 

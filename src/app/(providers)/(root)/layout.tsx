@@ -15,8 +15,9 @@ const RootLayout = ({ children, modal }: RootLayoutProps) => {
     const isLoginOrOnboarding = pathname.startsWith('/login') || pathname.startsWith('/onboarding');
 
     return (
-        <div className='flex-vertical mx-auto w-[375px] h-dvh bg-background md:w-[450px]'>
+        <div className='flex-vertical mx-auto w-[375px] h-dvh bg-background relative md:w-[450px]'>
             {!isLoginOrOnboarding && <MainHeader />}
+
             <div className='px-6 grow overflow-y-auto scrollbar-hide'>{children}</div>
             {modal}
             {!isLoginOrOnboarding && (

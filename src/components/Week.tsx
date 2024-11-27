@@ -1,6 +1,4 @@
-'use client';
 import { WEEKDAYS } from '@/constant/dayjs';
-import { Tables } from '@/types/supabase';
 import MultiSelectableDay from './Day/MultiSelectableDay';
 import ReadOnlyDay from './Day/ReadOnlyDay';
 import ViewableDay from './Day/ViewableDay';
@@ -8,20 +6,21 @@ import ViewableDay from './Day/ViewableDay';
 interface WeekProps {
     onSelectDays?: (days: string) => void;
     type: 'multi-select' | 'read-only' | 'viewable';
-    habit?: Tables<'habits'>;
+    habit?: { day: string; isCompleted: boolean }[];
 }
 
 const Week = ({ onSelectDays, type, habit }: WeekProps) => {
-    const handleDayClick = (day: string) => {
-        if (onSelectDays) onSelectDays(day);
-    };
+    const handleDayClick = (day: string) => onSelectDays?.(day);
 
     const renderedDay = (day: string) => {
         switch (type) {
             case 'multi-select':
                 return <MultiSelectableDay day={day} onClick={handleDayClick} />;
             case 'read-only':
-                return <ReadOnlyDay day={day} habit={habit} />;
+                if (habit) {
+                    const matchedDay = habit.find((h) => h.day === day);
+                    return <ReadOnlyDay day={day} isComplete={matchedDay?.isCompleted} />;
+                }
             case 'viewable':
                 return <ViewableDay day={day} />;
         }

@@ -6,7 +6,9 @@ interface DayStoreType {
     updateDay: (changedDay: string) => void;
 }
 
-export const useDayStore = create<DayStoreType>((set) => ({
+const useDayStore = create<DayStoreType>()((set) => ({
     selectedDay: CURRENT_DAY,
     updateDay: (changedDay) => set({ selectedDay: changedDay }),
 }));
+
+export default useDayStore;

@@ -1,23 +1,16 @@
-import { HabitProps } from '@/app/(providers)/(root)/habit/_components/Habit';
 import clsx from 'clsx';
 
-// modal
-const ReadOnlyDay = ({ day, habit }: HabitProps) => {
-    const { scheduled_days } = habit;
+interface ReadOnlyDayProps {
+    day: string;
+    isComplete?: boolean;
+}
 
+const ReadOnlyDay = ({ day, isComplete }: ReadOnlyDayProps) => {
     return (
         <>
             <span className='subtitle'>{day}</span>
-            {/* <div className={clsx('day cursor-default', habit?.includes(day) && 'checked')}> */}
-            <div className={clsx('day cursor-default')}>
-                <span className='subtitle'>
-                    ✅
-                    {/* {habit?.scheduledDays.includes(day)
-                        ? habit?.habitDays.find((d) => d.day === day)?.isFinished
-                            ? '✅'
-                            : '❌'
-                        : ''} */}
-                </span>
+            <div className={clsx('day cursor-default', isComplete && 'checked')}>
+                {isComplete === undefined ? '-' : isComplete ? '✅' : '❌'}
             </div>
         </>
     );
